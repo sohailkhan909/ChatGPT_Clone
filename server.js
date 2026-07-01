@@ -7,7 +7,8 @@ const dotenv = require('dotenv');
 
 const connectDB = require("./config/db");
 
-const authRoutes = require('./routes/authRoutes')
+const authRoutes = require('./routes/authRoutes');
+const errorHandler = require("./middleware/errorMiddleware");
 
 dotenv.config();
 connectDB();
@@ -18,9 +19,13 @@ app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(morgan('dev'))
 app.use(express.json())
-
+app.use(errorHandler)
 
 app.use('api/v1/auth', authRoutes);
 app.listen(port, () => {
     console.log(`Server is Running on Port : ${port}`.bgBlack.green);
 })
+
+// ,
+    // "frontend":"npm start --prefix ./frontend",
+    // "dev": "concurrently \"npm run server\" \"npm run frontend\""
