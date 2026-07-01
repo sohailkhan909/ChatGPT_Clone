@@ -7,7 +7,7 @@ const dotenv = require('dotenv');
 
 const connectDB = require("./config/db");
 
-
+const authRoutes = require('./routes/authRoutes')
 
 dotenv.config();
 connectDB();
@@ -20,6 +20,7 @@ app.use(morgan('dev'))
 app.use(express.json())
 
 
+app.use('api/v1/auth', authRoutes);
 app.listen(port, () => {
     console.log(`Server is Running on Port : ${port}`.bgBlack.green);
 })
