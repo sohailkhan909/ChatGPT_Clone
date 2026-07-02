@@ -21,7 +21,7 @@ app.use(morgan('dev'))
 app.use(express.json())
 app.use(errorHandler)
 
-app.use('api/v1/auth', authRoutes);
+app.use('/api/v1/auth', authRoutes);
 app.listen(port, () => {
     console.log(`Server is Running on Port : ${port}`.bgBlack.green);
 })
